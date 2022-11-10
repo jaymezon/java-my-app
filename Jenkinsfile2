@@ -1,0 +1,29 @@
+@Library("mylibs") _
+pipeline {
+  agent any
+  tools {
+    maven 'maven2'
+  }
+  stages{
+    stage('SCM Checkout'){
+        git 'https://github.com/jaymezon/my-app'
+   }
+    stage("Maven Build"){
+      steps{
+        sh "mvn clean package"
+      }
+    }
+    stage("Slack Notification"){
+      steps{
+        slackSend baseUrl: 'https://hooks.slack.com/services/', 
+        channel: 'jenkins-updates', 
+        color: 'good', 
+        message: 'Welcome to Jenkins, slack', 
+        tokenCredentialId: 'slack-demo', 
+        username: 'timvigilant-jenkins-updates'
+      }
+    }
+  } 
+}
+
+
