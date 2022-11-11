@@ -1,7 +1,7 @@
 node{
 // demo
    stage('SCM Checkout'){
-     git branch: 'main', credentialsId: 'github', url: 'https://github.com/jaymezon/my-app'
+     git branch: 'main', credentialsId: 'github', url: 'https://github.com/jaymezon/java-my-app/'
    }
    stage('Compile-Package'){
       // Get maven home path
